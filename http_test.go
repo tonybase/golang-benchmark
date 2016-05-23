@@ -9,6 +9,7 @@ import (
 	"testing"
 )
 
+// go test -bench=. -benchmem -cpuprofile=cpu.out -memprofile=mem.out http_test.go
 // http 1.1
 func BenchmarkHttpParallel(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {

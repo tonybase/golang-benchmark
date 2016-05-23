@@ -8,9 +8,10 @@ import (
 )
 
 func main() {
-	m := make(map[int64]int32)
+	var u [10000]int32
+	m := make(map[int64][]int32)
 	for i := 0; i < 100000; i++ {
-		m[int64(i)] = int32(i % 10)
+		m[int64(i)] = u
 	}
 	// encode
 	now := time.Now()
