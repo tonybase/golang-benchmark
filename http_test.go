@@ -14,7 +14,7 @@ import (
 func BenchmarkHttpParallel(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			resp, err := http.Get("http://localhost:8001/")
+			resp, err := http.Get("http://s1.tony.wiki:8001/")
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -35,7 +35,7 @@ func BenchmarkHttp2Parallel(b *testing.B) {
 	client := &http.Client{Transport: tr}
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			resp, err := client.Get("https://localhost:8002/")
+			resp, err := client.Get("https://s1.tony.wiki:8002/")
 			if err != nil {
 				log.Fatal(err)
 			}

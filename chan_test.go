@@ -22,6 +22,11 @@ func TMap() {
 		}()
 	}
 	<-q
+	for i := 0; i <= count; i++ {
+		r.RLock()
+		_ = m[i]
+		r.RUnlock()
+	}
 }
 
 func TChan() {
@@ -35,17 +40,13 @@ func TChan() {
 }
 
 func BenchmarkMapParallel(b *testing.B) {
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			TMap()
-		}
-	})
+	for i := 0; i < b.N; i++ {
+		TMap()
+	}
 }
 
 func BenchmarkChanParallel(b *testing.B) {
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			TChan()
-		}
-	})
+	for i := 0; i < b.N; i++ {
+		TChan()
+	}
 }
